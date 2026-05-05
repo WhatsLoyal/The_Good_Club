@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Good Club · TGB · Informe de sistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --tgb-lime: #B8D43A;
+  --tgb-lime-dark: #9BB82A;
+  --tgb-black: #1A1A1A;
+  --tgb-ink: #0A0A0A;
+  --tgb-cream: #F4F1E8;
+  --tgb-paper: #FAF8F1;
+  --tgb-red: #E04E3C;
+  --tgb-shadow: rgba(0,0,0,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Archivo', sans-serif;
+  background: var(--tgb-paper);
+  color: var(--tgb-ink);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--tgb-black);
+  color: var(--tgb-cream);
+  padding: 80px 32px 100px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 6px solid var(--tgb-lime);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: var(--tgb-lime);
+  border-radius: 50%;
+  opacity: 0.12;
+  filter: blur(40px);
+}
+
+.hero-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--tgb-lime);
+  color: var(--tgb-black);
+  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.hero h1 .lime { color: var(--tgb-lime); }
+
+.hero-subtitle {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 400;
+  max-width: 700px;
+  opacity: 0.85;
+  margin-bottom: 40px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-meta span::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--tgb-lime);
+  border-radius: 50%;
+}
+
+/* ===== NAV INDEX ===== */
+.toc {
+  background: var(--tgb-black);
+  color: var(--tgb-cream);
+  padding: 40px 32px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.toc-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.toc a {
+  color: var(--tgb-cream);
+  text-decoration: none;
+  padding: 12px 16px;
+  border-left: 3px solid transparent;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toc a:hover {
+  border-left-color: var(--tgb-lime);
+  background: rgba(184, 212, 58, 0.08);
+  color: var(--tgb-lime);
+}
+
+.toc a .num {
+  color: var(--tgb-lime);
+  font-weight: 600;
+}
+
+/* ===== SECTIONS ===== */
+section.content {
+  padding: 80px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--tgb-lime-dark);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-tag::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--tgb-lime);
+}
+
+h2 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: var(--tgb-ink);
+}
+
+h3 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  margin: 32px 0 16px;
+  letter-spacing: -0.01em;
+}
+
+p { margin-bottom: 16px; max-width: 75ch; }
+
+p.lead {
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  max-width: 65ch;
+}
+
+strong { font-weight: 700; }
+
+/* ===== CARDS ===== */
+.card {
+  background: white;
+  border: 2px solid var(--tgb-ink);
+  padding: 32px;
+  margin: 24px 0;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--tgb-ink);
+}
+
+.card.lime {
+  background: var(--tgb-lime);
+  color: var(--tgb-ink);
+}
+
+.card.dark {
+  background: var(--tgb-ink);
+  color: var(--tgb-cream);
+  box-shadow: 6px 6px 0 var(--tgb-lime);
+}
+
+.card.dark h3 { color: var(--tgb-lime); }
+
+.card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+/* ===== STAT BLOCKS ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.stat {
+  background: white;
+  border: 2px solid var(--tgb-ink);
+  padding: 24px;
+  position: relative;
+}
+
+.stat-value {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--tgb-ink);
+  margin-bottom: 8px;
+}
+
+.stat-value .unit { font-size: 24px; color: var(--tgb-lime-dark); }
+
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(0,0,0,0.6);
+}
+
+/* ===== FLOW STEPS ===== */
+.flow {
+  display: grid;
+  gap: 0;
+  margin: 32px 0;
+}
+
+.flow-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px dashed rgba(0,0,0,0.2);
+}
+
+.flow-step:last-child { border-bottom: none; }
+
+.flow-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--tgb-lime);
+  -webkit-text-stroke: 2px var(--tgb-ink);
+}
+
+.flow-content h4 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.flow-content p { margin: 0; font-size: 15px; }
+
+/* ===== MOCKUPS ===== */
+.mockup-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.phone {
+  background: var(--tgb-ink);
+  border-radius: 32px;
+  padding: 16px;
+  border: 3px solid var(--tgb-ink);
+  position: relative;
+  aspect-ratio: 9/16;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.phone.green { background: #16a34a; box-shadow: 8px 8px 0 var(--tgb-ink); }
+.phone.red { background: var(--tgb-red); box-shadow: 8px 8px 0 var(--tgb-ink); }
+.phone.gray { background: #6b7280; box-shadow: 8px 8px 0 var(--tgb-ink); }
+
+.phone-emoji { font-size: 48px; margin-bottom: 16px; }
+.phone-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.phone-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  opacity: 0.95;
+  margin-bottom: 16px;
+}
+.phone-prize {
+  background: rgba(255,255,255,0.2);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: auto;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+/* ===== TABLES ===== */
+.table-wrap {
+  overflow-x: auto;
+  margin: 24px 0;
+  border: 2px solid var(--tgb-ink);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 15px;
+}
+
+th {
+  background: var(--tgb-ink);
+  color: var(--tgb-lime);
+  text-align: left;
+  padding: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+td.num { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+tr:last-child td { border-bottom: none; }
+
+tr.total {
+  background: var(--tgb-lime);
+  font-weight: 700;
+}
+
+/* ===== MESSAGE BUBBLES ===== */
+.whatsapp-mock {
+  background: #ECE5DD;
+  padding: 24px;
+  margin: 24px 0;
+  border: 2px solid var(--tgb-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bubble {
+  background: #DCF8C6;
+  padding: 12px 16px;
+  border-radius: 12px;
+  max-width: 85%;
+  align-self: flex-start;
+  font-size: 15px;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  white-space: pre-line;
+}
+
+.bubble strong { display: block; margin-bottom: 4px; }
+
+.bubble-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(0,0,0,0.5);
+  margin-bottom: 4px;
+}
+
+/* ===== CHECKLIST ===== */
+.checklist {
+  list-style: none;
+  margin: 24px 0;
+}
+
+.checklist li {
+  padding: 12px 0 12px 36px;
+  position: relative;
+  border-bottom: 1px dashed rgba(0,0,0,0.15);
+  font-size: 16px;
+}
+
+.checklist li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  background: var(--tgb-lime);
+  color: var(--tgb-ink);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.checklist.no li::before {
+  content: '✗';
+  background: var(--tgb-ink);
+  color: var(--tgb-lime);
+}
+
+/* ===== PHASES TIMELINE ===== */
+.phases {
+  display: grid;
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.phase {
+  background: white;
+  border: 2px solid var(--tgb-ink);
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.phase-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--tgb-ink);
+  color: var(--tgb-lime);
+  padding: 6px 10px;
+  text-align: center;
+}
+
+.phase-content h4 {
+  font-weight: 800;
+  font-size: 17px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.phase-content p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--tgb-ink);
+  color: var(--tgb-cream);
+  padding: 60px 32px 40px;
+  text-align: center;
+  border-top: 6px solid var(--tgb-lime);
+}
+
+footer .tag {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 32px;
+  color: var(--tgb-lime);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+
+/* ===== UTILS ===== */
+.divider {
+  height: 1px;
+  background: var(--tgb-ink);
+  margin: 60px 0;
+  opacity: 0.15;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 24px 0;
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 60px 24px 80px; }
+  section.content { padding: 60px 24px; }
+  .two-col { grid-template-columns: 1fr; }
+  .flow-step { grid-template-columns: 60px 1fr; gap: 16px; }
+  .flow-num { font-size: 40px; }
+  .phase { grid-template-columns: 1fr; }
+  .card { padding: 24px; box-shadow: 4px 4px 0 var(--tgb-ink); }
+}
+
+@media print {
+  .toc { display: none; }
+  .hero { padding: 40px 32px; }
+  section.content { padding: 40px 32px; page-break-inside: avoid; }
+  .card, .phone, .stat { break-inside: avoid; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content > * { animation: fadeUp 0.6s ease backwards; }
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Informe interno · v5.0 · Mayo 2026</div>
+    <h1>The Good<br><span class="lime">Club</span></h1>
+    <p class="hero-subtitle">El programa de fidelización de TGB. Sin app, sin tarjeta, sin spam. Cada visita suma siempre. Premio al instante, burger gratis y premio gordo al cliente del mes.</p>
+    <div class="hero-meta">
+      <span>Piloto: TGB Antiguo</span>
+      <span>Programa: The Good Club</span>
+      <span>Hardware: 1 móvil en barra</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#filosofia"><span class="num">01</span> Filosofía</a>
+    <a href="#cliente"><span class="num">02</span> El cliente</a>
+    <a href="#camarero"><span class="num">03</span> El camarero</a>
+    <a href="#mecanica"><span class="num">04</span> Mecánica</a>
+    <a href="#mensajes"><span class="num">05</span> Mensajes</a>
+    <a href="#arquitectura"><span class="num">06</span> Arquitectura</a>
+    <a href="#economia"><span class="num">07</span> Economía</a>
+    <a href="#piloto"><span class="num">08</span> Piloto</a>
+    <a href="#nos"><span class="num">09</span> Lo que NO hace</a>
+  </div>
+</nav>
+
+<!-- ===== 01 FILOSOFÍA ===== -->
+<section class="content" id="filosofia">
+  <div class="section-tag">01 · Filosofía</div>
+  <h2>El sistema desaparece</h2>
+  <p class="lead">Las grandes cadenas (McDonald's, Starbucks, Burger King) construyen apps que pesan, piden datos y compiten por el espacio en el móvil del cliente. WhatsLoyalty hace lo contrario: vive dentro de la app que el cliente ya usa todos los días.</p>
+
+  <div class="card lime">
+    <div class="card-label">Principio rector</div>
+    <h3 style="margin-top:0;">El cliente no descarga, no se registra, no recuerda. Solo come y enseña un QR.</h3>
+    <p style="margin-bottom:0;">Cero apps. Cero contraseñas. Cero tarjetas de cartón. La fidelización no debería ser un trabajo extra para el cliente — debería ser un premio que aparece solo.</p>
+  </div>
+
+  <h3>Las tres reglas inviolables</h3>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-content">
+        <h4>Nunca más de un tap</h4>
+        <p>Toda interacción del cliente cabe en un único gesto: escanear, enseñar, recibir.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-content">
+        <h4>Nunca recordar nada</h4>
+        <p>El cliente no necesita saber cuántos puntos lleva ni cuándo caducan. El sistema se lo dice cada vez.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-content">
+        <h4>Nadie se va con las manos vacías</h4>
+        <p>Si no toca premio directo, sigues sumando papeletas para el ranking del mes. Tres capas que conviven: ruleta inmediata, burger garantizada cada 5 visitas, y premio gordo mensual al cliente más fiel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 02 CLIENTE ===== -->
+<section class="content" id="cliente">
+  <div class="section-tag">02 · La experiencia del cliente</div>
+  <h2>De curioso a Good</h2>
+  <p class="lead">El cliente vive cinco momentos en toda su relación con The Good Club. No hay pantallas que aprender, no hay menús, no hay niveles. Solo enseñar el QR y recibir respuesta.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-content">
+        <h4>Alta · una sola vez en la vida</h4>
+        <p>Escanea el QR del cartel/mantel. Se abre WhatsApp con mensaje pre-rellenado. Lo envía. Bot pide nombre. Bot le devuelve <strong>su QR personal</strong> como imagen. El cliente fija ese mensaje en el chat. Tiempo: 30 segundos.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-content">
+        <h4>Visita · cada vez que viene</h4>
+        <p>Paga normal en Codysis. Antes o después, abre WhatsApp, enseña su QR. El camarero apunta el móvil de barra, suena el ping. El cliente recibe WhatsApp con su progreso y, si toca, su premio sorpresa.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-content">
+        <h4>Premio sorpresa · 30% de las veces</h4>
+        <p>De forma aleatoria, una de cada tres visitas activa un regalo: caña, patatas, postre o upgrade. Se canjea automáticamente en la siguiente visita sin códigos ni gestiones.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-content">
+        <h4>Burger gratis · cada 5 visitas</h4>
+        <p>Premio garantizado y predecible. A la 5ª visita, el WhatsApp anuncia burger gratis. La siguiente vez que viene, enseña el QR, el camarero ve "rojo: burger gratis", la pone a 0 en Codysis. Contador a cero, vuelta a empezar.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">05</div>
+      <div class="flow-content">
+        <h4>Ranking mensual · papeletas que suman</h4>
+        <p>Cada visita suma una papeleta para el premio gordo del mes. El cliente con más papeletas en TGB Antiguo se lleva el premio (Smartbox, Amazon, Netflix). Cada WhatsApp incluye su posición actual: <em>"Vas el 3º este mes, te quedan 4 días"</em>. Refuerzo competitivo sin sorteo legal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 03 CAMARERO ===== -->
+<section class="content" id="camarero">
+  <div class="section-tag">03 · La experiencia del camarero</div>
+  <h2>Un gesto. Tres colores.</h2>
+  <p class="lead">El camarero no aprende un sistema nuevo. Cobra como siempre en Codysis. El único cambio: apuntar la cámara del móvil de barra al QR del cliente The Good Club. Tres segundos. Un solo gesto.</p>
+
+  <div class="mockup-row">
+    <div class="phone green">
+      <div class="phone-emoji">✅</div>
+      <div class="phone-name">MAITE</div>
+      <div class="phone-status">VISITA 3/5</div>
+      <div class="phone-prize">+ ping verde · sigue cobrando</div>
+    </div>
+    <div class="phone red">
+      <div class="phone-emoji">🍔</div>
+      <div class="phone-name">ANDONI</div>
+      <div class="phone-status">BURGER GRATIS</div>
+      <div class="phone-prize">+ campana · poner a 0 en Codysis</div>
+    </div>
+    <div class="phone gray">
+      <div class="phone-emoji">⚪</div>
+      <div class="phone-name">No reconocido</div>
+      <div class="phone-status">QR INVÁLIDO</div>
+      <div class="phone-prize">Invítale al cartel de mesa</div>
+    </div>
+  </div>
+
+  <div class="card dark">
+    <div class="card-label">Regla de oro</div>
+    <h3 style="margin-top:0;">Codysis cobra. WhatsLoyalty cuenta. No se hablan.</h3>
+    <p style="margin-bottom:0;">El móvil de barra no es una segunda TPV. Es un timbre con cámara. Lee, suena, vuelve a cámara. La operativa de cobro no cambia ni una pulsación.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 04 MECÁNICA ===== -->
+<section class="content" id="mecanica">
+  <div class="section-tag">04 · Mecánica de premios</div>
+  <h2>Tres capas que conviven</h2>
+  <p class="lead">La gran lección de la competencia: si el cliente se va con las manos vacías, lo pierdes. Por eso combinamos tres mecánicas que cubren los tres horizontes temporales — el inmediato, el medio plazo y el mes completo.</p>
+
+  <div class="card lime">
+    <div class="card-label">Regla universal del sistema</div>
+    <h3 style="margin-top:0;">Cada visita suma. Sin importes mínimos. Sin condiciones.</h3>
+    <p style="margin-bottom:0;">Si el cliente viene a TGB Antiguo y enseña su QR, suma <strong>1 visita y 1 papeleta</strong>. Da igual si toma una caña, un menú completo o una hamburguesa con patatas. La promesa simple es lo que sostiene el sistema — en el momento que metes letra pequeña, la fidelización deja de ser un regalo y pasa a ser una negociación.</p>
+  </div>
+
+  <h3>Capa 2 · Burger gratis garantizada (la ancla)</h3>
+  <div class="card">
+    <div class="stats-grid" style="margin:0;">
+      <div class="stat" style="border:none; padding:0;">
+        <div class="stat-value">5<span class="unit"> visitas</span></div>
+        <div class="stat-label">Esfuerzo</div>
+      </div>
+      <div class="stat" style="border:none; padding:0;">
+        <div class="stat-value">1<span class="unit"> burger</span></div>
+        <div class="stat-label">Recompensa</div>
+      </div>
+      <div class="stat" style="border:none; padding:0;">
+        <div class="stat-value">~3<span class="unit">€</span></div>
+        <div class="stat-label">Coste real TGB</div>
+      </div>
+      <div class="stat" style="border:none; padding:0;">
+        <div class="stat-value">~9<span class="unit">€</span></div>
+        <div class="stat-label">Valor percibido</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Capa 1 · Premio inmediato (la ruleta)</h3>
+  <p>En cada visita registrada, el sistema lanza una tirada. El cliente puede recibir un premio inmediato canjeable en su próxima visita, o nada. Las probabilidades están calibradas para máxima emoción y coste mínimo.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Premio sorpresa</th>
+          <th class="num">Probabilidad</th>
+          <th class="num">Coste real</th>
+          <th class="num">Frecuencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🍺 Caña / refresco gratis</td>
+          <td class="num">15%</td>
+          <td class="num">0,80 €</td>
+          <td class="num">1 cada 7 visitas</td>
+        </tr>
+        <tr>
+          <td>🍟 Patatas pequeñas gratis</td>
+          <td class="num">8%</td>
+          <td class="num">0,60 €</td>
+          <td class="num">1 cada 12 visitas</td>
+        </tr>
+        <tr>
+          <td>🍰 Postre gratis</td>
+          <td class="num">5%</td>
+          <td class="num">1,20 €</td>
+          <td class="num">1 cada 20 visitas</td>
+        </tr>
+        <tr>
+          <td>🥩 Doble carne (upgrade)</td>
+          <td class="num">2%</td>
+          <td class="num">1,50 €</td>
+          <td class="num">1 cada 50 visitas</td>
+        </tr>
+        <tr>
+          <td>— Sin sorpresa esta vez</td>
+          <td class="num">70%</td>
+          <td class="num">0,00 €</td>
+          <td class="num">mayoría</td>
+        </tr>
+        <tr class="total">
+          <td>Coste medio por visita</td>
+          <td class="num">100%</td>
+          <td class="num">0,26 €</td>
+          <td class="num">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card lime">
+    <div class="card-label">Las tres reglas que protegen el sistema</div>
+    <ol style="padding-left: 20px; margin: 0;">
+      <li style="margin-bottom: 12px;"><strong>El cliente no elige.</strong> Toca lo que toca. Cero discusiones, cero catálogos.</li>
+      <li style="margin-bottom: 12px;"><strong>Canje en la siguiente visita.</strong> Sin códigos, sin recordatorios. La próxima vez que enseña el QR, el camarero ve el sorpresa pendiente.</li>
+      <li style="margin-bottom: 0;"><strong>Solo un sorpresa pendiente a la vez.</strong> Si no canjeas, no entras al sorteo en la siguiente. Genera urgencia natural.</li>
+    </ol>
+  </div>
+
+  <h3>Capa 3 · Ranking mensual (el premio gordo)</h3>
+  <p>Cada visita suma <strong>una papeleta para el ranking del mes</strong>. A fin de mes, el cliente con más papeletas en TGB Antiguo se lleva un premio externo (Smartbox, Amazon, Netflix, Spotify). El cliente recibe en cada visita su posición actual en el ranking, lo que convierte el sistema en una competición visible entre habituales.</p>
+
+  <div class="card">
+    <div class="card-label">Por qué ranking y no sorteo aleatorio</div>
+    <p style="margin-bottom: 0;">Un sorteo legal en España exige bases depositadas, custodia notarial y obligaciones fiscales. <strong>Un ranking por orden de mérito (más visitas) NO es un sorteo</strong> — es un programa de fidelización con premio al cliente más fiel. Sin notarios, sin bases. Y además es psicológicamente más potente: el cliente puede actuar para ganar.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Premio mensual</th>
+          <th class="num">Coste TGB</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Junio (piloto)</td><td>Smartbox "Cena para dos"</td><td class="num">~60 €</td></tr>
+        <tr><td>Julio</td><td>Tarjeta Amazon 50€</td><td class="num">50 €</td></tr>
+        <tr><td>Agosto</td><td>Pack Netflix + Spotify (3 meses)</td><td class="num">~75 €</td></tr>
+        <tr><td>Septiembre</td><td>Smartbox "Escapada 1 noche"</td><td class="num">~100 €</td></tr>
+        <tr class="total"><td>Promedio mensual piloto</td><td>Rotación de premios</td><td class="num">~70 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card dark">
+    <div class="card-label">El mensaje que engancha</div>
+    <p style="margin-bottom: 0;">En cada visita, el cliente recibe su posición en el ranking del mes:</p>
+    <p style="font-family: 'JetBrains Mono', monospace; background: rgba(184,212,58,0.1); padding: 16px; margin-top: 16px; border-left: 3px solid var(--tgb-lime); margin-bottom: 0;">"+1 papeleta. Llevas 8.<br>Vas el 3º en el ranking de mayo.<br>Te quedan 4 días."</p>
+  </div>
+
+  <h3>Cierre de mes · qué pasa el día 30</h3>
+  <ul class="checklist">
+    <li><strong>Al ganador:</strong> WhatsApp con el premio. <em>"🏆 Aitor, has ganado la escapada de mayo. Pásate por TGB Antiguo a recogerla."</em></li>
+    <li><strong>Al podio (2º y 3º):</strong> consolación con caña + patatas gratis canjeable. Refuerzo para que sigan viniendo.</li>
+    <li><strong>Al resto:</strong> mensaje de cierre + arranque del siguiente mes. <em>"Mes cerrado. Quedaste 7º con 11 papeletas. Empezamos junio desde cero. Tu burger garantizada sigue activa."</em></li>
+    <li><strong>Reset automático:</strong> contador de papeletas a 0 para todos. Las visitas y la burger garantizada NO se resetean — siguen su contador propio.</li>
+  </ul>
+
+  <h3>Anti-abuso · las tres protecciones silenciosas</h3>
+  <p>Que cada visita sume sin condiciones no significa "barra libre". Hay tres protecciones técnicas que el cliente honesto ni siquiera nota, pero que evitan que el sistema se rompa por casos extremos.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-content">
+        <h4>Una visita máximo cada 3 horas</h4>
+        <p>Si el QR del mismo cliente se escanea dos veces en menos de 3 horas, la segunda no cuenta. Evita doblar visitas en una misma comida. Permite que el cliente que desayuna y vuelve a cenar sume las dos. Mensaje gris al camarero: <em>"Ya registrado hoy, vuelve más tarde"</em>. El cliente no recibe ningún WhatsApp.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-content">
+        <h4>Máximo 1 papeleta al día por cliente</h4>
+        <p>El que viene a desayunar y a cenar suma 2 visitas para la burger garantizada, pero <strong>solo 1 papeleta para el ranking del mes</strong>. Evita que un cliente con tiempo libre destroce el ranking viniendo varias veces al día solo por las papeletas.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-content">
+        <h4>El QR es del cliente, no transferible</h4>
+        <p>El QR personal lleva el ID del cliente vinculado a su teléfono. Si Aitor le presta su QR a su primo, las recompensas las recibe Aitor en su WhatsApp, no el primo. <strong>El sistema se autoprotege</strong>: nadie va a prestar su cuenta sabiendo que los premios los recibe el otro.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card dark">
+    <div class="card-label">Lo que NO hace el sistema</div>
+    <p style="margin-bottom: 0;">No filtra por importe del ticket. No exige consumo mínimo. No descarta clientes "pequeños". <strong>El cliente que viene 5 veces a por una caña vale tanto como el que viene 5 veces a comer menú</strong> — porque ese cliente de cañas es probablemente quien mañana se queda a comer.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 05 MENSAJES ===== -->
+<section class="content" id="mensajes">
+  <div class="section-tag">05 · Conversación con el cliente</div>
+  <h2>Seis mensajes en bucle</h2>
+  <p class="lead">Toda la relación con el cliente cabe en seis plantillas. Repetidas, simples, sin ruido. Cero campañas, cero spam, cero "promo del finde".</p>
+
+  <div class="whatsapp-mock">
+    <div class="bubble-label">01 · Alta (primera vez)</div>
+    <div class="bubble"><strong>¡Bienvenido a The Good Club, Aitor! 🍔</strong>Eres oficialmente Good. Este es tu QR personal — fíjalo en este chat.
+
+5 visitas = 1 burger gratis.
+Cada visita puede tocarte algo más.
+Y puedes ganar el premio Good del mes.
+
+Enséñalo cada vez que vengas a TGB Antiguo.</div>
+  </div>
+
+  <div class="whatsapp-mock">
+    <div class="bubble-label">02 · Visita normal (sin sorpresa)</div>
+    <div class="bubble">✅ Visita 3/5 · The Good Club
++1 papeleta del mes (llevas 8)
+Vas el 3º del ranking Good 🥉
+
+Te quedan 2 visitas para tu burger.</div>
+  </div>
+
+  <div class="whatsapp-mock">
+    <div class="bubble-label">03 · Visita con premio sorpresa</div>
+    <div class="bubble">✅ Visita 3/5 · The Good Club
+🎁 ¡Hoy te invitamos a una caña!
+La canjeas en tu próxima visita.
+
++1 papeleta (llevas 8 · vas el 3º)</div>
+  </div>
+
+  <div class="whatsapp-mock">
+    <div class="bubble-label">04 · Burger garantizada desbloqueada</div>
+    <div class="bubble"><strong>🎉 ¡Burger gratis para ti, Good!</strong>Enseña tu QR la próxima vez.
+Empezamos otra ronda.
+
+Sigues sumando papeletas para el premio Good del mes.</div>
+  </div>
+
+  <div class="whatsapp-mock">
+    <div class="bubble-label">05 · Cierre de mes (ganador)</div>
+    <div class="bubble"><strong>🏆 ¡AITOR, ERES EL GOOD DEL MES!</strong>Has sido el cliente más fiel de TGB Antiguo en mayo con 18 papeletas.
+
+Tu premio: Smartbox "Cena para dos".
+Pásate a recogerlo cuando quieras.
+
+Junio empieza mañana 🍔</div>
+  </div>
+
+  <div class="whatsapp-mock">
+    <div class="bubble-label">06 · Cierre de mes (resto)</div>
+    <div class="bubble">Mes cerrado en The Good Club.
+Quedaste 7º con 11 papeletas.
+
+El Good de mayo: Aitor (18 papeletas).
+Junio empieza desde cero.
+
+Tu burger garantizada sigue activa.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 06 ARQUITECTURA ===== -->
+<section class="content" id="arquitectura">
+  <div class="section-tag">06 · Arquitectura técnica</div>
+  <h2>Lo que hay que construir</h2>
+  <p class="lead">El sistema completo se compone de cuatro piezas. Tres ya existen en versión beta. Una se construye nueva.</p>
+
+  <h3>Componente 1 · Webapp del móvil de barra</h3>
+  <p>HTML autocontenido en GitHub Pages. Una URL por local. Sin login, en pantalla completa.</p>
+  <ul class="checklist">
+    <li>Cámara siempre activa, lectura automática de QR (librería jsQR)</li>
+    <li>Tres estados visuales: verde (visita), rojo (premio), gris (no reconocido)</li>
+    <li>Tres sonidos distintos para reconocimiento sin mirar</li>
+    <li>Comunicación con Make.com vía webhook</li>
+    <li>PWA instalable, abre como app</li>
+  </ul>
+
+  <h3>Componente 2 · Bot WhatsApp (Make + Twilio)</h3>
+  <p>Cuatro escenarios en Make.com gobiernan toda la lógica del sistema.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Escenario</th><th>Trigger</th><th>Acción</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Alta</strong></td><td>WhatsApp entrante</td><td>Crea cliente, genera QR personal, envía imagen</td></tr>
+        <tr><td><strong>Visita</strong></td><td>Webhook webapp</td><td>Suma visita y papeleta, tira ruleta, calcula ranking, devuelve estado, manda WhatsApp</td></tr>
+        <tr><td><strong>Canje</strong></td><td>Webhook webapp</td><td>Detecta premio pendiente, marca canje, resetea sorpresa</td></tr>
+        <tr><td><strong>Cierre de mes</strong></td><td>Programado día 1 a las 00:01</td><td>Ordena ranking, manda WhatsApp ganador + 2º + 3º + resto, resetea papeletas a 0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Componente 3 · Google Sheet de TGB Antiguo</h3>
+  <p>Una sola hoja con siete columnas funcionales. Esquema preparado para replicar a otros locales si el piloto valida.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Columna</th><th>Contenido</th></tr></thead>
+      <tbody>
+        <tr><td>telefono_hash</td><td>SHA256 del teléfono (privacidad)</td></tr>
+        <tr><td>nombre</td><td>Nombre que dio el cliente</td></tr>
+        <tr><td>id_cliente</td><td>UUID que va dentro del QR</td></tr>
+        <tr><td>visitas_burger</td><td>0–5, resetea al canjear burger</td></tr>
+        <tr><td>premio_sorpresa_pendiente</td><td>caña / patatas / postre / doble / vacío</td></tr>
+        <tr><td>papeletas_mes</td><td>Contador del mes en curso, resetea día 1</td></tr>
+        <tr><td>ultima_visita</td><td>Timestamp para análisis</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Componente 4 · Cartel físico del local</h3>
+  <p>El componente más importante. Sin esto, el sistema no arranca. A4 en barra y mantel individual.</p>
+  <div class="card dark" style="text-align: center;">
+    <p style="font-family: 'Archivo Black', sans-serif; font-size: 28px; line-height: 1.1; margin-bottom: 8px; color: var(--tgb-lime);">ÚNETE A<br>THE GOOD CLUB</p>
+    <p style="font-style: italic; opacity: 0.7; margin-bottom: 20px; font-size: 14px;">El club de los que repiten en TGB</p>
+    <p style="margin-bottom: 8px;">🎁 Caña, patatas o postre · al instante</p>
+    <p style="margin-bottom: 8px;">🍔 Burger gratis · cada 5 visitas</p>
+    <p style="margin-bottom: 16px;">🏆 Premio Good · al cliente del mes</p>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.7; margin: 0;">Sin app · Sin tarjeta · Sin spam</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 07 ECONOMÍA ===== -->
+<section class="content" id="economia">
+  <div class="section-tag">07 · Economía del sistema</div>
+  <h2>Cuánto cuesta, cuánto vale</h2>
+  <p class="lead">Cifras realistas del piloto: solo TGB Antiguo, un premio mensual contenido. Si los KPIs validan, escalamos a Ballonti y Zurriola con datos en mano.</p>
+
+  <h3>Inversión inicial · TGB Antiguo</h3>
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-value">150<span class="unit">€</span></div>
+      <div class="stat-label">Móvil Android barra</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">35<span class="unit">€</span></div>
+      <div class="stat-label">Soporte + cargador</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">40<span class="unit">€</span></div>
+      <div class="stat-label">Vinilos + manteles</div>
+    </div>
+    <div class="stat" style="background: var(--tgb-lime); border-color: var(--tgb-ink);">
+      <div class="stat-value">~225<span class="unit">€</span></div>
+      <div class="stat-label">Total inversión inicial</div>
+    </div>
+  </div>
+
+  <h3>Coste recurrente · piloto Antiguo</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Concepto</th><th class="num">€/mes</th><th>Notas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Make.com</td><td class="num">~10</td><td>Plan core actual ya pagado</td></tr>
+        <tr><td>Twilio WhatsApp (msgs)</td><td class="num">~15</td><td>0,005€/msg salida España</td></tr>
+        <tr><td>Generación de QR</td><td class="num">0</td><td>api.qrserver.com gratis</td></tr>
+        <tr><td>Google Sheets</td><td class="num">0</td><td>Workspace ya pagado</td></tr>
+        <tr><td>Hosting webapp</td><td class="num">0</td><td>GitHub Pages</td></tr>
+        <tr><td>Premio mensual</td><td class="num">~70</td><td>Smartbox / Amazon / Netflix rotando</td></tr>
+        <tr class="total"><td>Total operativo Antiguo</td><td class="num">~95</td><td>Mensual durante el piloto</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Coste de premios por cliente fidelizado</h3>
+  <div class="card">
+    <p style="margin: 0;">Suponiendo un cliente medio que viene <strong>8 veces al mes</strong> y gasta <strong>12€ por visita</strong>:</p>
+    <div class="stats-grid" style="margin: 24px 0 0;">
+      <div class="stat" style="border:none; padding:0;">
+        <div class="stat-value">96<span class="unit">€</span></div>
+        <div class="stat-label">Ingreso bruto/mes</div>
+      </div>
+      <div class="stat" style="border:none; padding:0;">
+        <div class="stat-value">2,08<span class="unit">€</span></div>
+        <div class="stat-label">Coste sorpresas/mes</div>
+      </div>
+      <div class="stat" style="border:none; padding:0;">
+        <div class="stat-value">2,40<span class="unit">€</span></div>
+        <div class="stat-label">Coste burger gratis/mes</div>
+      </div>
+      <div class="stat" style="border:none; padding:0; background: var(--tgb-lime);">
+        <div class="stat-value">4,7<span class="unit">%</span></div>
+        <div class="stat-label">Coste pequeños / ingreso</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card lime">
+    <div class="card-label">Sobre el premio mensual gordo</div>
+    <p style="margin-bottom: 12px;">El premio gordo (~70€) <strong>solo se concede al cliente más fiel del mes</strong> — un cliente al mes en TGB Antiguo. Si ese cliente ha venido 18 veces y gastado ~216€ en el mes, el premio supone un <strong>32% sobre lo que él solo ha facturado</strong>.</p>
+    <p style="margin-bottom: 0;">Es coste alto unitario, pero <strong>genera competencia visible entre todos los habituales</strong> que ven su ranking cada visita. Es ese ruido de fondo lo que genera retorno, no el premio en sí.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 08 PILOTO ===== -->
+<section class="content" id="piloto">
+  <div class="section-tag">08 · Plan de piloto</div>
+  <h2>Solo Antiguo. Sin prisa.</h2>
+  <p class="lead">Un local, un premio mensual, sin escalar hasta validar. Antiguo aporta el contexto perfecto: ya hay baseline diaria con el reto aperitivos, datos limpios para medir impacto, y un equipo que conoce bien al cliente recurrente.</p>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-tag">Semana 1</div>
+      <div class="phase-content">
+        <h4>Construcción</h4>
+        <p>Webapp del móvil de barra con los 3 estados. Reescritura de los 4 escenarios Make (alta, visita, canje, cierre de mes). Integración generación QR personal. Diseño A4 + mantel imprimible.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-tag">Semana 2</div>
+      <div class="phase-content">
+        <h4>Setup físico + prueba interna</h4>
+        <p>Compra móvil + soporte. Instalación en barra Antiguo. Imprenta vinilos. Compra del primer Smartbox del mes. Pruebas con equipo: 5–10 escaneos por persona, ronda de ajustes.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-tag">Semana 3</div>
+      <div class="phase-content">
+        <h4>Soft launch</h4>
+        <p>Solo turno de tarde, solo barra. 2–3 clientes habituales avisados de antemano. Apertura gradual al público. Comunicación: cartel + 2 stories Instagram TGB.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-tag">Semana 4</div>
+      <div class="phase-content">
+        <h4>Cierre de mes + medición</h4>
+        <p>Primer cierre mensual: ganador del Smartbox notificado y entregado. Análisis completo de KPIs. Decisión de continuidad con el sistema y, si validan, planificación de réplica en Ballonti.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>KPIs del piloto Antiguo</h3>
+  <ul class="checklist">
+    <li><strong>Altas activas:</strong> objetivo 80+ clientes registrados al final de la semana 4</li>
+    <li><strong>Tasa de retención 7 días:</strong> % de altas que vuelven en menos de 7 días (objetivo &gt;40%)</li>
+    <li><strong>Frecuencia entre visitas:</strong> bajada del 15–20% en clientes fidelizados vs media local</li>
+    <li><strong>Burgers garantizadas canjeadas:</strong> indicador de que la capa 2 funciona</li>
+    <li><strong>Papeletas del top 5 ranking:</strong> indicador de competencia activa por el premio mensual</li>
+    <li><strong>Coste real promedio:</strong> validar el 4,7% teórico vs realidad operativa</li>
+    <li><strong>Attach rate aperitivo en fidelizados vs no fidelizados:</strong> efecto cruzado con el reto en marcha</li>
+  </ul>
+
+  <div class="card lime" style="margin-top: 32px;">
+    <div class="card-label">Criterio de escalado</div>
+    <p style="margin-bottom: 0;">Si al cierre del primer mes la <strong>frecuencia entre visitas baja un 15% en fidelizados</strong> y hay <strong>al menos 80 altas activas</strong>, replicamos en Ballonti. Si no, diagnóstico de qué falla antes de tocar otro local.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 09 NOS ===== -->
+<section class="content" id="nos">
+  <div class="section-tag">09 · Disciplina del NO</div>
+  <h2>Lo que NO hace este sistema</h2>
+  <p class="lead">La simplicidad solo se mantiene si todos los meses decimos NO a 10 ideas que parecen buenas. Esta es la lista intocable.</p>
+
+  <ul class="checklist no">
+    <li><strong>NO hay app que descargar.</strong> Todo vive en WhatsApp. Romperíamos la promesa central.</li>
+    <li><strong>NO hay segunda TPV.</strong> El móvil de barra es un timbre con cámara, no un sistema de cobro paralelo.</li>
+    <li><strong>NO hay códigos alfanuméricos para canjear.</strong> El QR es la única identidad. Cero copias y pegas.</li>
+    <li><strong>NO hay panel de cliente con login.</strong> Todo se consulta enseñando el QR. Cero contraseñas.</li>
+    <li><strong>NO hay tiers ni niveles.</strong> Un solo objetivo claro. Tier "VIP" puede venir en v2 si lo demandan.</li>
+    <li><strong>NO hay catálogo de premios.</strong> Toca lo que toca. Cero discusiones en barra.</li>
+    <li><strong>NO hay newsletter ni "promo del finde".</strong> Solo cuatro plantillas en bucle. Cero spam.</li>
+    <li><strong>NO se piden email, edad, cumpleaños.</strong> Solo nombre y teléfono. RGPD limpio por diseño.</li>
+    <li><strong>NO se rescata al cliente perdido a 90 días.</strong> Si no vuelve, es por algo. Respeto.</li>
+    <li><strong>NO se integra con Codysis.</strong> Sistema cerrado. WhatsLoyalty vive en paralelo, sin tocarlo.</li>
+  </ul>
+
+  <div class="card dark" style="margin-top: 48px; text-align: center;">
+    <p style="font-family: 'Archivo Black', sans-serif; font-size: 38px; line-height: 1; margin: 0 0 8px; color: var(--tgb-lime); text-transform: uppercase; letter-spacing: -0.02em;">THE GOOD CLUB</p>
+    <p style="font-style: italic; opacity: 0.85; margin: 0 0 24px; font-size: 16px;">El club de los que repiten en TGB</p>
+    <p style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; line-height: 1.4; margin: 0; opacity: 0.95;">Cada visita suma siempre.<br>Premio al instante, burger gratis a la 5ª,<br>premio Good al cliente del mes.</p>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.6; margin: 24px 0 0; letter-spacing: 1.5px;">Eso es The Good Club.</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="tag">The Good Club</div>
+  <p>TGB · Informe interno v5.0 · Mayo 2026 · Felix Lizarraga</p>
+</footer>
+
+</body>
+</html>
